@@ -31,7 +31,7 @@ class SMSCallbackController extends \BaseController {
 					throw new AlreadyStreamingException();
 				}
 
-				$title = ucwords($parts[1]);
+				$title = ucwords(trim($parts[1]));
 
 				$client = new Google_Client();
                 $client->setClientId(getenv('GOOGLE_CLIENT_ID'));
@@ -78,7 +78,7 @@ class SMSCallbackController extends \BaseController {
                         'streamId' => $streamsResponse['id'],
                     ));
 
-                dd($streamsResponse);
+                Log::info('youtube-stream', $streamsResponse);
 
 				$talk = Talk::create([
 					'title' => $title,
