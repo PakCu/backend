@@ -34,6 +34,10 @@ class SMSCallbackController extends \BaseController {
 				$title = ucwords($parts[1]);
 
 				$client = new Google_Client();
+                $client->setClientId(getenv('GOOGLE_CLIENT_ID'));
+                $client->setClientSecret(getenv('GOOGLE_CLIENT_SECRET'));
+                $client->setScopes('https://www.googleapis.com/auth/youtube');
+                $client->setRedirectUri(getenv('GOOGLE_REDIRECT_URL'));
 				$client->refreshToken(file_get_contents(storage_path() . '/.google-refresh-token'));
 				$broadcastSnippet = new Google_Service_YouTube_LiveBroadcastSnippet();
 			    $broadcastSnippet->setTitle($title . ' - ' . $location->name);
