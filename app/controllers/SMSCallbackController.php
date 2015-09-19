@@ -85,8 +85,10 @@ class SMSCallbackController extends \BaseController {
 					'title' => $title,
 					'location_id' => $location->id,
 					'user_id' => $user->id,
-                    'rtmp_address' => $streamsResponse->cdn->streamName,
+                    'youtube_url' => $bindBroadcastResponse->id,
+                    'rtmp_url' => $streamsResponse->cdn->streamName,
 				]);
+                
 				SMSService::StreamingReady($phone);
 			} else if($keyword === 'BERHENTI') {
 				$existing = Talk::where('user_id', $user->id)->where('status', '!=', 'Closed')->first();
