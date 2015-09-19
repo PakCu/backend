@@ -21,11 +21,8 @@ class UsersController extends \BaseController
         if (Request::ajax()) {
             $users = User::with('roles')->whereNotNull('users.created_at');
             $users = $users
-                ->select(['users.id', 'users.last_name', 'users.id as roles_column', 'users.confirmed', 'users.id as actions', 'users.first_name']);
+                ->select(['users.id', 'users.name', 'users.id as roles_column', 'users.confirmed', 'users.id as actions']);
             return Datatables::of($users)
-                ->edit_column('last_name', function($user){
-                    return $user->getFullName();
-                })
                 ->edit_column('roles_column', function($user){
                     return '<ul>' . implode('', array_map(function($name){ return '<li>' . $name . '</li>'; }, $user->roles->lists('name'))) . '</ul>';
                 })

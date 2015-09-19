@@ -33,7 +33,6 @@ class User extends ConfideUser implements UserInterface, RemindableInterface {
             'name'                  => 'required',
             'mobile_number'         => 'required',
             'username'              => 'required|alpha_dash|unique:users,username',
-            'username'              => 'required|alpha_dash|unique:users,username',
             'email'                 => 'required|email|unique:users,email',
             'password'              => 'required|min:4|confirmed',
             'password_confirmation' => 'min:4',
@@ -41,7 +40,6 @@ class User extends ConfideUser implements UserInterface, RemindableInterface {
         'update' => [
             'name'          => 'required',
             'mobile_number' => 'required',
-            'username'      => 'required|alpha_dash|unique:users,username',
             'username'      => 'required|alpha_dash|unique:users,username',
             'email'         => 'required|email|unique:users,email',
         ],
