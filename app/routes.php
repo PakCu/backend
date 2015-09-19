@@ -38,6 +38,8 @@ Route::group(['before' => 'auth'], function () {
     Route::resource('locations', 'LocationsController');
 });
 
+Route::get('/sms/callback', 'SMSCallbackController@callback');
+
 // Confide routes
 Route::get('auth/register', 'AuthController@create');
 Route::post('auth', 'AuthController@store');
