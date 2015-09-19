@@ -1,3 +1,3 @@
 <?php
 
-class AlreadyStreaming extends Exception {}
+class AlreadyStreamingException extends Exception {}
