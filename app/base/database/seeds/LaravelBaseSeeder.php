@@ -109,8 +109,7 @@ class LaravelBaseSeeder extends Seeder
 
         $users = [
             [
-                'first_name'            => 'System',
-                'last_name'             => 'Administrator',
+                'name'             => 'Administrator',
                 'username'              => 'admin',
                 'email'                 => 'admin@example.com',
                 'password'              => 'admin',
@@ -118,8 +117,7 @@ class LaravelBaseSeeder extends Seeder
                 'confirmed'             => 1,
             ],
             [
-                'first_name'            => 'System',
-                'last_name'             => 'User',
+                'name'             => 'User',
                 'username'              => 'user',
                 'email'                 => 'user@example.com',
                 'password'              => 'user',

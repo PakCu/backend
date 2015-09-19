@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder {
             DB::statement('SET FOREIGN_KEY_CHECKS=0');
         } catch (Exception $e) {}
         
-        // $this->call('LaravelBaseSeeder');
+        $this->call('LaravelBaseSeeder');
         $this->call('LocationsTableSeeder');
 
         try {
