@@ -130,6 +130,7 @@ return array(
         'Zizaco\Entrust\EntrustServiceProvider',
         'Bllim\Datatables\DatatablesServiceProvider',
         'Maatwebsite\Excel\ExcelServiceProvider',
+        'Artistan\Nexmo\NexmoServiceProvider',
     ),
 
     /*
