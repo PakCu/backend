@@ -39,6 +39,7 @@ class SMSCallbackController extends \BaseController {
                 $client->setScopes('https://www.googleapis.com/auth/youtube');
                 $client->setRedirectUri(getenv('GOOGLE_REDIRECT_URL'));
 				$client->refreshToken(file_get_contents(storage_path() . '/.google-refresh-token'));
+
 				$broadcastSnippet = new Google_Service_YouTube_LiveBroadcastSnippet();
 			    $broadcastSnippet->setTitle($title . ' - ' . $location->name);
 			    $broadcastSnippet->setScheduledStartTime('2034-01-30T00:00:00.000Z');
@@ -55,6 +56,9 @@ class SMSCallbackController extends \BaseController {
 			    $cdn = new Google_Service_YouTube_CdnSettings();
 			    $cdn->setFormat("360p");
 			    $cdn->setIngestionType('rtmp');
+
+                $streamSnippet = new Google_Service_YouTube_LiveStreamSnippet();
+                $streamSnippet->setTitle($title . ' - ' . $location->name);
 
                 $streamInsert = new Google_Service_YouTube_LiveStream();
                 $streamInsert->setSnippet($streamSnippet);
