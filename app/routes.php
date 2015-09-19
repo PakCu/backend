@@ -40,6 +40,7 @@ Route::group(['before' => 'auth'], function () {
 });
 
 Route::get('/sms/callback', 'SMSCallbackController@callback');
+Route::controller('/google', 'GoogleAuthController');
 
 // Confide routes
 Route::get('auth/register', 'AuthController@create');

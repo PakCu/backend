@@ -16,6 +16,17 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administration <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
+                                <li class="dropdown-header">PiMasjid</li>
+                                @if(Talk::canList())
+                                    @if($controller === 'TalksController')<li class="active">@else<li>@endif
+                                        <a href="{{action('TalksController@index')}}">Talks</a>
+                                    </li>
+                                @endif
+                                @if(Location::canList())
+                                    @if($controller === 'LocationsController')<li class="active">@else<li>@endif
+                                        <a href="{{action('LocationsController@index')}}">Locations</a>
+                                    </li>
+                                @endif
                                 <li class="dropdown-header">User Management</li>
                                 @if(User::canList())
                                     @if($controller === 'UsersController')<li class="active">@else<li>@endif
@@ -36,6 +47,9 @@
                                 @endif
                                 <li class="divider"></li>
                                 <li class="dropdown-header">App Config</li>
+                                @if($controller === 'GoogleAuthController')<li class="active">@else<li>@endif
+                                    <a href="{{action('GoogleAuthController@getStatus')}}">Google Auth</a>
+                                </li>
                                 @if($controller === 'Config')<li class="active">@else<li>@endif
                                     <a href="{{action('ConfigsController@getShow', 'sample')}}">Sample App Config</a>
                                 </li>
