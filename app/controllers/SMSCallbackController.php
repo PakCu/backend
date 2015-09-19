@@ -78,8 +78,8 @@ class SMSCallbackController extends \BaseController {
                         'streamId' => $streamsResponse['id'],
                     ));
 
-                Log::info('youtube-stream', (array) $streamsResponse);
-                Log::info('youtube-broadcast', (array) $bindBroadcastResponse);
+                Log::info('youtube-stream', var_export($streamsResponse, true));
+                Log::info('youtube-broadcast', var_export($bindBroadcastResponse, true));
 
 				$talk = Talk::create([
 					'title' => $title,
@@ -88,7 +88,7 @@ class SMSCallbackController extends \BaseController {
                     'youtube_url' => $bindBroadcastResponse->id,
                     'rtmp_url' => $streamsResponse->cdn->streamName,
 				]);
-                
+
 				SMSService::StreamingReady($phone);
 			} else if($keyword === 'BERHENTI') {
 				$existing = Talk::where('user_id', $user->id)->where('status', '!=', 'Closed')->first();
