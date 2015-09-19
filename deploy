@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git pull
+chown -R www-data:www-data *
