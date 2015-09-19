@@ -55,13 +55,16 @@ class SMSCallbackController extends \BaseController {
 			    $broadcastInsert->setStatus($status);
 			    $broadcastInsert->setKind('youtube#liveBroadcast');
 
-			    $cdn = new Google_Service_YouTube_CdnSettings();
-			    $cdn->setFormat("360p");
-			    $cdn->setIngestionType('rtmp');
-
+                $broadcastsResponse = $youtube->liveBroadcasts->insert('snippet,status',
+                $broadcastInsert, array());
+                
                 $streamSnippet = new Google_Service_YouTube_LiveStreamSnippet();
                 $streamSnippet->setTitle($title . ' - ' . $location->name);
-
+                
+                $cdn = new Google_Service_YouTube_CdnSettings();
+                $cdn->setFormat("360p");
+                $cdn->setIngestionType('rtmp');
+                
                 $streamInsert = new Google_Service_YouTube_LiveStream();
                 $streamInsert->setSnippet($streamSnippet);
                 $streamInsert->setCdn($cdn);
