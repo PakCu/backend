@@ -85,8 +85,8 @@ class SMSCallbackController extends \BaseController {
 					'title' => $title,
 					'location_id' => $location->id,
 					'user_id' => $user->id,
-                    'youtube_url' => $bindBroadcastResponse->id,
-                    'rtmp_url' => $streamsResponse->cdn->streamName,
+                    'youtube_url' => $bindBroadcastResponse->getId(),
+                    'rtmp_url' => $streamsResponse->getCdn()->getIngestionInfo()->getStreamName(),
 				]);
 
 				SMSService::StreamingReady($phone);
