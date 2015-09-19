@@ -44,8 +44,8 @@ class SMSCallbackController extends \BaseController {
 
 				$broadcastSnippet = new Google_Service_YouTube_LiveBroadcastSnippet();
 			    $broadcastSnippet->setTitle($title . ' - ' . $location->name);
-			    $broadcastSnippet->setScheduledStartTime('2034-01-30T00:00:00.000Z');
-			    $broadcastSnippet->setScheduledEndTime('2034-01-31T00:00:00.000Z');
+			    $broadcastSnippet->setScheduledStartTime(date('Y', strtotime('+1 year')) . '-01-30T00:00:00.000Z');
+			    $broadcastSnippet->setScheduledEndTime(date('Y', strtotime('+1 year')) . '-01-31T00:00:00.000Z');
 
 			    $status = new Google_Service_YouTube_LiveBroadcastStatus();
     			$status->setPrivacyStatus('public');
