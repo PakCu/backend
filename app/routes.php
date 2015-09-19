@@ -36,6 +36,7 @@ Route::group(['before' => 'auth'], function () {
     Route::controller('config', 'ConfigsController');
 
     Route::resource('locations', 'LocationsController');
+    Route::resource('talks', 'TalksController');
 });
 
 Route::get('/sms/callback', 'SMSCallbackController@callback');

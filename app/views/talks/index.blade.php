@@ -10,7 +10,7 @@
                 <th>Location</th>
                 <th>Title</th>
                 <th>Youtube Url</th>
-                <th>Rmtp Url</th>
+                <th>RTMP Url</th>
                 <th>Status</th>
 
                 <th width="200px">Actions</th>

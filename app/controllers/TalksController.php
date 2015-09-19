@@ -21,11 +21,17 @@ class TalksController extends \BaseController {
                 'talks.location_id',
                 'talks.title',
                 'talks.youtube_url',
-                'talks.rmtp_url',
+                'talks.rtmp_url',
                 'talks.status',
-'talks.id as actions'
+			'talks.id as actions'
             ]);
 			return Datatables::of($talks)
+                ->edit_column('user_id', function($talk){
+                	return $talk->user->name;
+                })
+                ->edit_column('location_id', function($talk){
+                	return $talk->location->name;
+                })
                 ->edit_column('actions', function($talk){
                     $actions   = [];
                     $actions[] = $talk->canShow() ? link_to_action('TalksController@show', 'Show', $talk->id, ['class' => 'btn btn-xs btn-primary'] ) : '';

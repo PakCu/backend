@@ -9,10 +9,10 @@
     ->label('Title')
     ->required() }}
 {{ Former::text('youtube_url')
-    ->label('Youtube Url')
+    ->label('Youtube URL')
     ->required() }}
-{{ Former::text('rmtp_url')
-    ->label('Rmtp Url')
+{{ Former::text('rtmp_url')
+    ->label('RTMP URL')
     ->required() }}
 {{ Former::text('status')
     ->label('Status')

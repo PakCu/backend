@@ -10,7 +10,7 @@ class Talk extends Ardent {
         'location_id',
         'title',
         'youtube_url',
-        'rmtp_url',
+        'rtmp_url',
         'status',
 
     ];
@@ -32,7 +32,7 @@ class Talk extends Ardent {
             'location_id' => 'required',
             'title' => 'required',
             // 'youtube_url' => 'required',
-            // 'rmtp_url' => 'required',
+            // 'rtmp_url' => 'required',
             // 'status' => 'required',
 
         ],
@@ -41,7 +41,7 @@ class Talk extends Ardent {
             'location_id' => 'required',
             'title' => 'required',
             // 'youtube_url' => 'required',
-            // 'rmtp_url' => 'required',
+            // 'rtmp_url' => 'required',
             // 'status' => 'required',
 
         ]
@@ -96,10 +96,15 @@ class Talk extends Ardent {
     * Relationships
     */
    
-    // public function status()
-    // {
-    //     return $this->belongsTo('Status');
-    // }
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
+   
+    public function location()
+    {
+        return $this->belongsTo('Location');
+    }
 
 
     /**
