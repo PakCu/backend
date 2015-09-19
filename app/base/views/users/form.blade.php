@@ -10,7 +10,6 @@
     ->required()}}
 {{Former::email('email')
     ->required()}}
-{{dd($user)}}
 {{Former::multiselect('roles')
     ->label('Roles')
     ->options(Role::all()->lists('name', 'id'), (isset($user) ? $user->roles->lists('id') : [])) }}
