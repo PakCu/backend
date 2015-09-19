@@ -25,12 +25,12 @@ class SMSCallbackController extends \BaseController {
 				if(!$location) {
 					throw new LocationNotFoundException();
 				}
-
 				$talk = Talk::create([
 					'title' => ucwords($parts[1]),
 					'location_id' => $location->id,
 					'user_id' => $user->id,
 				]);
+				SMSService::StreamingReady($phone);
 			} else {
 				throw new InvalidFormatException();
 			}

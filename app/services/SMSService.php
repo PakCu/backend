@@ -4,6 +4,11 @@ use Artistan\Nexmo\Service\Message\Sms;
 
 class SMSService
 {
+    public static function StreamingReady($number)
+    {
+        self::send($number, 'PiMasjid bersedia untuk menerima stream. Tekan butang mula pada alat PiMasjid.');
+    }
+
     public static function InvalidFormat($number)
     {
         self::send($number, 'Format mesej tidak betul. Contoh: ceramah lokasi;tajuk ceramah');
