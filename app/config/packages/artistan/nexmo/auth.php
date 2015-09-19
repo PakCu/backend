@@ -3,6 +3,6 @@
  * User: Charles Peterson
  */
 return array(
-    'api_key' => 'api_key',
-    'api_secret' => 'api_secret'
+    'api_key' => getenv('NEXMO_KEY'),
+    'api_secret' => getenv('NEXMO_SECRET')
 );

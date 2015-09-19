@@ -13,7 +13,8 @@
 		"anahkiasen/former": "3.*",
 		"maatwebsite/excel": "1.*",
 		"symfony/yaml": "^2.6",
-		"artistan/nexmo": "^0.1.4"
+		"artistan/nexmo": "^0.1.4",
+		"vlucas/phpdotenv": "^2.0"
 	},
 	"autoload": {
 		"classmap": [
