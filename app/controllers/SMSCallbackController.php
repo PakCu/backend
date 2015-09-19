@@ -79,11 +79,13 @@ class SMSCallbackController extends \BaseController {
                     ));
 
                 Log::info('youtube-stream', (array) $streamsResponse);
+                Log::info('youtube-broadcast', (array) $bindBroadcastResponse);
 
 				$talk = Talk::create([
 					'title' => $title,
 					'location_id' => $location->id,
 					'user_id' => $user->id,
+                    'rtmp_address' => $streamsResponse->cdn->streamName,
 				]);
 				SMSService::StreamingReady($phone);
 			} else if($keyword === 'BERHENTI') {
