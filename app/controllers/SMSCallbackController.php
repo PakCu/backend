@@ -31,8 +31,44 @@ class SMSCallbackController extends \BaseController {
 					throw new AlreadyStreamingException();
 				}
 
+				$title = ucwords($parts[1]);
+
+				$client = new Google_Client();
+				$client->refreshToken(file_get_contents(storage_path() . '/.google-refresh-token'));
+				$broadcastSnippet = new Google_Service_YouTube_LiveBroadcastSnippet();
+			    $broadcastSnippet->setTitle($title . ' - ' . $location->name);
+			    $broadcastSnippet->setScheduledStartTime('2034-01-30T00:00:00.000Z');
+			    $broadcastSnippet->setScheduledEndTime('2034-01-31T00:00:00.000Z');
+
+			    $status = new Google_Service_YouTube_LiveBroadcastStatus();
+    			$status->setPrivacyStatus('public');
+
+    			$broadcastInsert = new Google_Service_YouTube_LiveBroadcast();
+			    $broadcastInsert->setSnippet($broadcastSnippet);
+			    $broadcastInsert->setStatus($status);
+			    $broadcastInsert->setKind('youtube#liveBroadcast');
+
+			    $cdn = new Google_Service_YouTube_CdnSettings();
+			    $cdn->setFormat("360p");
+			    $cdn->setIngestionType('rtmp');
+
+                $streamInsert = new Google_Service_YouTube_LiveStream();
+                $streamInsert->setSnippet($streamSnippet);
+                $streamInsert->setCdn($cdn);
+                $streamInsert->setKind('youtube#liveStream');
+
+                $streamsResponse = $youtube->liveStreams->insert('snippet,cdn', $streamInsert, array());
+
+                $bindBroadcastResponse = $youtube->liveBroadcasts->bind(
+                    $broadcastsResponse['id'],'id,contentDetails',
+                    array(
+                        'streamId' => $streamsResponse['id'],
+                    ));
+
+                dd($streamsResponse);
+
 				$talk = Talk::create([
-					'title' => ucwords($parts[1]),
+					'title' => $title,
 					'location_id' => $location->id,
 					'user_id' => $user->id,
 				]);
