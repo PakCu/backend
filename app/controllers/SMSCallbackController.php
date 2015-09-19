@@ -40,6 +40,8 @@ class SMSCallbackController extends \BaseController {
                 $client->setRedirectUri(getenv('GOOGLE_REDIRECT_URL'));
 				$client->refreshToken(file_get_contents(storage_path() . '/.google-refresh-token'));
 
+                $youtube = new Google_Service_YouTube($client);
+
 				$broadcastSnippet = new Google_Service_YouTube_LiveBroadcastSnippet();
 			    $broadcastSnippet->setTitle($title . ' - ' . $location->name);
 			    $broadcastSnippet->setScheduledStartTime('2034-01-30T00:00:00.000Z');
