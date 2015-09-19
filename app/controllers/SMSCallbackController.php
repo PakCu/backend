@@ -41,4 +41,10 @@ class SMSCallbackController extends \BaseController {
 			SMSService::LocationNotFound($phone, $parts[0]);
 		}
 	}
+
+	public function __construct()
+	{
+		__parent::construct();
+		View::share('controller', 'SMSCallback');
+	}
 }
