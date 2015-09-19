@@ -9,7 +9,7 @@ class SMSCallbackController extends \BaseController {
 			$phone = Input::get('msisdn');
 			if(!$phone)
 				return;
-			$user = User::where('phone_number', $phone)->first();
+			$user = User::where('mobile_number', $phone)->first();
 			if(!$user) {
 				throw new MobileNumberNotFoundException;
 			}
