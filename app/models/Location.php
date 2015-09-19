@@ -84,10 +84,10 @@ class Location extends Ardent {
     * Relationships
     */
    
-    // public function status()
-    // {
-    //     return $this->belongsTo('Status');
-    // }
+    public function talks()
+    {
+        return $this->hasMany('Talk');
+    }
 
 
     /**

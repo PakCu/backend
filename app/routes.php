@@ -41,6 +41,7 @@ Route::group(['before' => 'auth'], function () {
 
 Route::get('/sms/callback', 'SMSCallbackController@callback');
 Route::controller('/google', 'GoogleAuthController');
+Route::controller('/stream', 'StreamsController');
 
 // Confide routes
 Route::get('auth/register', 'AuthController@create');
