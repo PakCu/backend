@@ -28,4 +28,10 @@ class StreamsController extends \BaseController {
 		return 'ok';
 	}
 
+	public function __construct()
+	{
+		parent::__construct();
+		View::share('controller', 'Streams');
+	}
+
 }
