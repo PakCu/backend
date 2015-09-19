@@ -2,7 +2,7 @@
 
 class StreamsController extends \BaseController {
 
-	public function start()
+	public function getStart()
 	{
 		$hash = Input::get('hash');
 		$location = Location::where('hash', $hash)->first();
@@ -15,7 +15,7 @@ class StreamsController extends \BaseController {
 		return $talk->rtmp_url;
 	}
 
-	public function stop()
+	public function getStop()
 	{
 		$hash = Input::get('hash');
 		$location = Location::where('hash', $hash)->first();
