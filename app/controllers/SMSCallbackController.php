@@ -78,7 +78,7 @@ class SMSCallbackController extends \BaseController {
                         'streamId' => $streamsResponse['id'],
                     ));
 
-                Log::info('youtube-stream', $streamsResponse);
+                Log::info('youtube-stream', (array) $streamsResponse);
 
 				$talk = Talk::create([
 					'title' => $title,
