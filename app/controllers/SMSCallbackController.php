@@ -44,7 +44,7 @@ class SMSCallbackController extends \BaseController {
 
 	public function __construct()
 	{
-		__parent::construct();
+		parent::__construct();
 		View::share('controller', 'SMSCallback');
 	}
 }
