@@ -6,7 +6,7 @@
     ->required()}}
 {{Former::text('mobile_number')
     ->label('Mobile Number')
-    ->help('0192727155')
+    ->help('60192727155')
     ->required()}}
 {{Former::email('email')
     ->required()}}
