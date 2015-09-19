@@ -5,6 +5,7 @@ class SMSCallbackController extends \BaseController {
 	public function callback()
 	{
 		try {
+			Log::info('incomming', Input::all());
 			$phone = Input::get('msisdn');
 			if(!$phone)
 				return;
