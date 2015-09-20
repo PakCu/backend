@@ -4,11 +4,11 @@ class StreamsController extends \BaseController {
 
 	public function getStart()
 	{
-		$device_hash = Input::get('device_hash');
+		$device_hash = Input::get('hash');
 		$location = Location::where('device_hash', $device_hash)->first();
 		if(!$location)
 			throw new LocationNotFoundException();
-		$talk = $location->talks()->where('status', 'Awaiting Pairing')->first();
+		$talk = $location->talks()->where('status', '!=', 'Closed')->first();
 		if(!$talk)
 			throw new TalkNotFoundException();
 		$talk->update(['status' => 'Polling Readiness']);
@@ -17,7 +17,7 @@ class StreamsController extends \BaseController {
 
 	public function getStop()
 	{
-		$device_hash = Input::get('device_hash');
+		$device_hash = Input::get('hash');
 		$location = Location::where('device_hash', $device_hash)->first();
 		if(!$location)
 			throw new LocationNotFoundException();

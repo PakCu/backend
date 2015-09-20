@@ -17,8 +17,8 @@ class SMSCallbackController extends \BaseController {
 			$keyword = Input::get('keyword');
 			if($keyword === 'CERAMAH') {
 				$parts = explode(';', substr($text, 8));
-				// $parts[0] => location_id, $parts[1] => ceramah title
-				if(count($parts) !== 2) {
+				// $parts[0] => location_id, $parts[1] => ceramah title, $parts[2] => ustadh name
+				if(count($parts) !== 3) {
 					throw new InvalidFormatException();
 				}
 				$location = Location::find($parts[0]);
@@ -31,7 +31,7 @@ class SMSCallbackController extends \BaseController {
 					throw new AlreadyStreamingException();
 				}
 
-				$title = ucwords(trim($parts[1]));
+				$title = ucwords(trim($parts[2])) . ' - ' . ucwords(trim($parts[1])) . ' - ' . $location->name . ' - ' . date('j M y');
 
 				$client = new Google_Client();
                 $client->setClientId(getenv('GOOGLE_CLIENT_ID'));
@@ -43,7 +43,7 @@ class SMSCallbackController extends \BaseController {
                 $youtube = new Google_Service_YouTube($client);
 
 				$broadcastSnippet = new Google_Service_YouTube_LiveBroadcastSnippet();
-			    $broadcastSnippet->setTitle($title . ' - ' . $location->name);
+			    $broadcastSnippet->setTitle($title);
 			    $broadcastSnippet->setScheduledStartTime(date('Y', strtotime('+1 year')) . '-01-30T00:00:00.000Z');
 			    $broadcastSnippet->setScheduledEndTime(date('Y', strtotime('+1 year')) . '-01-31T00:00:00.000Z');
 
@@ -59,7 +59,7 @@ class SMSCallbackController extends \BaseController {
                 $broadcastInsert, array());
                 
                 $streamSnippet = new Google_Service_YouTube_LiveStreamSnippet();
-                $streamSnippet->setTitle($title . ' - ' . $location->name);
+                $streamSnippet->setTitle($title);
                 
                 $cdn = new Google_Service_YouTube_CdnSettings();
                 $cdn->setFormat("360p");
